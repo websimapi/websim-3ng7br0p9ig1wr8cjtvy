@@ -1,0 +1,36 @@
+{
+  "database": {
+    "schema": {
+      "announcement_events": {
+        "id": { "type": "uuid", "description": "Primary key (auto-managed)" },
+        "user_id": { "type": "uuid", "description": "Record owner (auto-managed)" },
+        "message": { "type": "text", "description": "Announcement text" },
+        "color": { "type": "text", "description": "CSS color string" },
+        "removed": { "type": "boolean", "description": "If true, clears active announcement" }
+      },
+      "admin_events": {
+        "id": { "type": "uuid", "description": "Primary key (auto-managed)" },
+        "user_id": { "type": "uuid", "description": "Record owner (auto-managed)" },
+        "type": { "type": "text", "description": "Event type: 'shutdown' | 'macro'" },
+        "seconds": { "type": "integer", "description": "Delay in seconds (for shutdown)" },
+        "message": { "type": "text", "description": "Message or payload" },
+        "macro": { "type": "text", "description": "Macro name, when type='macro'" },
+        "scheduled_at": { "type": "timestamptz", "description": "UTC time when event was scheduled" },
+        "active": { "type": "boolean", "description": "Whether this event is currently active" }
+      },
+      "player_stats": {
+        "id": { "type": "uuid", "description": "Primary key, set to the user's ID." },
+        "username": { "type": "text", "description": "The player's username at the time of last update." },
+        "kills": { "type": "integer", "description": "Total number of kills." },
+        "deaths": { "type": "integer", "description": "Total number of deaths." },
+        "highest_kill_streak": { "type": "integer", "description": "The highest kill streak achieved by the player." },
+        "rank": { "type": "text", "description": "The player's current rank based on kills." }
+      },
+      "player_tags": {
+        "id": { "type": "uuid", "description": "Primary key, set to the user's ID, ensuring one tag per player." },
+        "tag_name": { "type": "text", "description": "The player's unique 8-character tag name." },
+        "tag_color": { "type": "text", "description": "The CSS color for the tag." }
+      }
+    }
+  }
+}
